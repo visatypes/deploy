@@ -6,16 +6,18 @@ services:
     ports:
       - 5432:5432
     networks:
-      - rt_db
+      - visa_types
+    volumes:
+      - .data/postgres:/var/lib/postgresql/data
 
-  backend:
-    image: ghcr.io/visatypes/backend:v1.0.0
+  app:
+    image: ghcr.io/visatypes/backend:v1.0.1
     env_file:
       - .env
     ports:
-      - 80:80
+      - 5000:5000
     networks:
-      - rt_db
+      - visa_types
 
 networks:
-  rt_db:
+  visa_types:
