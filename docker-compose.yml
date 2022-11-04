@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:14
+    env_file:
+      - .env
+    ports:
+      - 5432:5432
+    networks:
+      - rt_db
+
+  backend:
+    image: ghcr.io/visatypes/backend:v1.0.0
+    env_file:
+      - .env
+    ports:
+      - 80:80
+    networks:
+      - rt_db
+
+networks:
+  rt_db:
